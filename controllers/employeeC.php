@@ -7,9 +7,9 @@ class EmployeeController
 
   public function index()
   {
-    $this->list();
+    $this->liste();
   }
-  public function list()
+  public function liste()
   {
     require_once MODELS . DS . 'employeeM.php';
     $m = new EmployeeModel();
@@ -32,24 +32,29 @@ class EmployeeController
   }
   public function edit($id = null)
   {
+    //variable de la view
     if (isset($_POST['id'])) {
       $contactID = strtolower(trim($_POST['id']));
       $Firstname = strtolower(trim($_POST['prenom']));
       $Lastname = strtolower(trim($_POST['nom']));
-
+      //model lien entre controller et la base
       require_once MODELS . DS . 'employeeM.php';
       $m = new EmployeeModel();
       $result = $m->updateOne($Firstname, $Lastname, $contactID);
 
-      $this->list();
+      $this->liste();
     }else{
     require_once MODELS . DS . 'employeeM.php';
+    //appel vers le modele
     $m = new EmployeeModel();
     require_once CLASSES . DS . 'view.php';
     $v = new View();
     if ($employee = $m->listOne($id))
       $v->setVar('e', $employee);
+      //redirection vers employee_edit.php
+      //formulaire
     $v->render('employee', 'edit');
+    
   }
   }
   public function delete($id = null)
@@ -57,7 +62,7 @@ class EmployeeController
     require_once MODELS . DS . 'employeeM.php';
     $m = new EmployeeModel();
     $result = $m->delete($id);
-    $this->list();
+    $this->liste();
   }
 
   public function add()
@@ -72,9 +77,9 @@ class EmployeeController
       $result = $m->addOne($EmployeeID, $ContactID);
 
     
-      $this->list();
+      $this->liste();
     }else{
-    require_once CLASSES . DS . 'view.php';
+    require_once CLASSES . DS . 'view.php';  
     $v = new View();
     $v->render('employee', 'add');
     }

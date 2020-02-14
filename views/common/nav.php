@@ -10,7 +10,7 @@
           <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="index.php?c=employee&m=list">Employés</a>
+          <a class="nav-link" href="index.php?c=employee&m=liste">Employés</a>
           </li>
           <li class="nav-item">
           <a class="nav-link" href="index.php?c=employee&m=add">ADD</a>
